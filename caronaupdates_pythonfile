@@ -1,0 +1,80 @@
+import random
+import requests
+from datetime import datetime
+
+
+def greet_and_introduce():
+	responses=[
+	"Our service is so glad to help you",
+	"Hope you are good"
+	]
+	print(f"{get_dailytime_greetings()}!{random.choice(responses)}")
+	
+def get_dailytime_greetings():
+	current_time=datetime.now()
+	dailytime_greetings="Good Morning"
+	if current_time.hour>12 and current_time.hour<17:
+		dailytime_greetings="Good Afternoon"
+	elif current_time.hour>17 and current_time.hour<22:
+		dailytime_greetings="Good Evening "
+	elif current_time.hour>=22:
+		dailytime_greetings="Sorry! it's too late"
+	return dailytime_greetings
+
+def welcome(name):
+	message=[
+	"Nice to meet you",
+	"Let's have a good time together"
+	]
+	print()
+	print(f"Hi {name.capitalize()}! {random.choice(message)}")
+	
+#select any one option
+
+def show_menu():
+	print("****Select one option you want****")
+	print("1.To know about Coronaupsates")
+	print("2.Exit")
+	print("  ",end="")
+	print("__________")
+	try:
+		return int(input("Enter your choice[1-2]:"))
+	except:
+		print("Enter only choice 1 and 2'")
+		return 0
+
+import requests
+def coronaUpdates():
+    country=input('Enter country name : ')
+    response = requests.get("https://coronavirus-19-api.herokuapp.com/countries/"+country)
+    body=response.json()
+    if(response.status_code!=400):
+        print("        ",end="")
+        print("Total no of cases in",body['country'],":",body['cases'])
+        print("        ",end="")
+        print("Today cases :",body['todayCases'])
+        print("        ",end="")
+        print("Deaths :",body['deaths'])
+        print("        ",end="")
+        print("Today Deaths :",body['todayDeaths'])
+        print("        ",end="")
+        print("Recovered :",body['recovered'])
+        print("        ",end="")
+        print("Active :",body['active'])  
+    else:
+        print("Please enter a valid country name")    
+        coronaUpdates()
+
+def bot():
+	greet_and_introduce()
+	name =input("Mention your name:")
+	welcome(name)
+	choice=show_menu()
+	while choice!=3:
+		if choice ==1:
+			coronaUpdates()
+			choice=show_menu()
+		elif choice ==2:
+			print(" Thank you for using our service ")
+			break;
+bot()
