@@ -1,2 +1,20 @@
 # COVID-_19-BOT
-This bot tells about no.of  corona cases in each state .
+*****This is program for chatbot****
+*.This bot will ask for the user name and greets him.
+
+**.Bot will gives an option to select about corona update,
+
+***.Once select the option bot asks for country name which
+   User want to know the datail about.
+
+****.Bot will show the details about
+         1.No.of cases
+
+         2.No.of deaths
+
+         3.Recovered cases
+
+         4.Active cases
+
+*****.If person selects the 2nd option it exits and goes 
+to the main menu.
